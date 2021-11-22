@@ -7,14 +7,11 @@
 - Use the validation functions in your component on onChange and onBlur events of your input fields
 - Feel free to modify the validation functions to your needs
 - example:
-  _validating an email field:_
+  **_validating an email field:_**
 
           
-            // import the necessary functions
-            import {
-            emailInputBlurHandler,
-            emailInputChangeHandler,
-            } from '../Simple React Form Validation/validationHelpers'
+            // import validator
+            import validator from '../Simple React Form Validation/validationHelpers'
 
             // use states to store the input value and error message
             const [email, setEmail] = useState('')
@@ -28,11 +25,11 @@
 
                 onChange={(e) => {
                 setEmail(e.target.value)
-                emailInputChangeHandler(e.target.value, setEmailError)
+                validator.emailInputChangeHandler(e.target.value, setEmailError)
                 }}
 
                 onBlur={(e) => {
-                emailInputBlurHandler(e.target.value, setEmailError)
+                validator.emailInputBlurHandler(e.target.value, setEmailError)
                 }}
             />
 
