@@ -9,7 +9,7 @@
 - example:
   _validating an email field:_
 
-          ```JavaScript
+          
             // import the necessary functions
             import {
             emailInputBlurHandler,
@@ -40,7 +40,7 @@
             <span className='text-danger fs-6'>
                 {emailError}
             </span>
-            ```
+            
 
 **---- Found a bug? ----**
 
