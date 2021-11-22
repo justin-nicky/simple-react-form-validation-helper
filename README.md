@@ -48,4 +48,4 @@ Feel free to open an issue on github.
 
 **---- Want to contribute? ----**
 
-Feel free to fork this repository and make a pull request😊.
+Great! fork this repository and make a pull request😊.
