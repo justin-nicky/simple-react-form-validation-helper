@@ -3,7 +3,7 @@
 **---- How to use it? ----**
 
 - clone this repository to your react app
-- Import the validation functions that you need in your component
+- Import validator in your component
 - Use the validation functions in your component on onChange and onBlur events of your input fields
 - Feel free to modify the validation functions to your needs
 - example:
