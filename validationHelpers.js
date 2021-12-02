@@ -65,10 +65,6 @@ const validator = {
     if (email.includes(' ')) {
       setError('Email id should not contain space.')
     }
-    // if (
-    //   emailError === 'Email id should not contain space.' ||
-    //   email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
-    // )
     else {
       setError('')
     }
@@ -204,9 +200,7 @@ const validator = {
     } else if (Number(price) < 0) {
       setError('Negative numbers are not allowed')
     }
-    // else if (!price.match(/^\d+(,\d{1,2})?$/)) {
-    //   setError('Enter a valid number!')
-    // }
+  
     else {
       setError('')
     }
@@ -236,9 +230,6 @@ const validator = {
     } else if (Number(percentage) < 0) {
       setError('Negative numbers are not allowed')
     }
-    // else if (!percentage.match(/\\d+(?:\\.\\d+)?/)) {
-    //   setError('Enter a valid percentage!')
-    // }
     else {
       setError('')
     }
