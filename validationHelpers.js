@@ -76,27 +76,26 @@ const validator = {
 
   //######################### Validating phone number! ###########################
 
-  phoneInputBlurHandler(phone,phoneError) {
+  phoneInputBlurHandler(phone,setError) {
       if (phone === '') {
-      phoneError('This field cannot be empty!')
+      setError('This field cannot be empty!')
       } else if (phone.length < 10) {
-        phoneError('Phone number does not have 10 digits')
+        setError('Phone number does not have 10 digits')
       } else if (phone.length > 10) {
-        phoneError('Phone number has more than 10 digits')
+        setError('Phone number has more than 10 digits')
       } else {
-        return null
+        setError('')
       }
     },
 
- phoneInputChangeHandler(phone, phoneError) {
+ phoneInputChangeHandler(phone, setError) {
       if (!phone.match(/^\d{10}$/) && phone !== '') {
-        phoneError('Enter numbers only!')
+        setError('Enter numbers only!')
       } else if (phone.length > 10) {
-        phoneError('Phone number has more than 10 digits')
+        setError('Phone number has more than 10 digits')
       }
-    
       else {
-        return null
+        setError('')
       }
     },
 
