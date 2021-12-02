@@ -76,33 +76,28 @@ const validator = {
 
   //######################### Validating phone number! ###########################
 
-  phoneInputBlurHandler(phone) {
-    if (phone === '') {
-      return 'This field cannot be empty!'
-    } else if (phone.length < 10) {
-      return 'Phone number does not have 10 digits'
-    } else if (phone.length > 10) {
-      return 'Phone number has more than 10 digits'
-    } else {
-      return null
-    }
-  },
+  phoneInputBlurHandler(phone,setError) {
+      if (phone === '') {
+      setError('This field cannot be empty!')
+      } else if (phone.length < 10) {
+        setError('Phone number does not have 10 digits')
+      } else if (phone.length > 10) {
+        setError('Phone number has more than 10 digits')
+      } else {
+        setError('')
+      }
+    },
 
-  phoneInputChangeHandler(phone, phoneError) {
-    if (!phone.match(/^\d{10}$/) && phone !== '') {
-      return 'Enter numbers only!'
-    } else if (phone.length > 10) {
-      return 'Phone number has more than 10 digits'
-    }
-    //  if (
-    //   phoneError == 'Phone number should not contain space.' ||
-    //   phoneError == 'Enter numbers only!' ||
-    //   phoneError == 'Phone number has more than 10 digits'
-    // )
-    else {
-      return null
-    }
-  },
+ phoneInputChangeHandler(phone, setError) {
+      if (!phone.match(/^\d{10}$/) && phone !== '') {
+        setError('Enter numbers only!')
+      } else if (phone.length > 10) {
+        setError('Phone number has more than 10 digits')
+      }
+      else {
+        setError('')
+      }
+    },
 
   //######################### Validating Password! ###########################
 
