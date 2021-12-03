@@ -241,12 +241,13 @@ const validator = {
   percentageInputChangeHandler(percentage, setError) {
     if (percentage === '') {
       setError('This field cannot be empty!')
-    } else if (!percentage.match(/\\d+(?:\\.\\d+)?/)) {
+    } else if (!percentage.match(/(^100(\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$)/g)) {
       setError('Enter a valid percentage!')
     } else {
       setError('')
     }
   },
 }
+
 
 export default validator
