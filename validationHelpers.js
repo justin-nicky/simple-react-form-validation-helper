@@ -85,7 +85,7 @@ const validator = {
     },
 
  phoneInputChangeHandler(phone, setError) {
-   
+
       if(!phone.match(/^[0-9][-\s\./0-9]*$/g)){
         setError("Enter numbers only!");
       }else if (phone.length > 10) {
@@ -181,7 +181,7 @@ const validator = {
   postalCodeInputChangeHandler(postalCode, setError) {
     if (postalCode === '') {
       setError('This field cannot be empty!')
-    } else if (!postalCode.match(/^\d{6}$/) && postalCode !== '') {
+    } else if (!postalCode.match(/^[0-9]*$/g) && postalCode !== '') {
       setError('Enter numbers only!')
     } else if (postalCode.length > 6) {
       setError('postalCode should not have more than 6 digits')
@@ -201,7 +201,6 @@ const validator = {
     } else if (Number(price) < 0) {
       setError('Negative numbers are not allowed')
     }
-  
     else {
       setError('')
     }
