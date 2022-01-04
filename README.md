@@ -2,16 +2,15 @@
 
 **---- How to use it? ----**
 
-- clone this repository to your react app.
+- Install validator using npm: `npm i @brocode/simple-react-form-validation-helper`
 - Import validator in your component.
 - Use the validation functions in your component on `onChange` and `onBlur` events of your input fields.
-- Feel free to modify the validation functions to your needs.
 - example:
   **_validating an email field:_**
 
 ```jsx
 // import validator
-import validator from '../Simple React Form Validation/validationHelpers'
+import validator from '@brocode/simple-react-form-validation-helper'
 
 const sampleForm = () => {
  // use states to store the input value and error message
