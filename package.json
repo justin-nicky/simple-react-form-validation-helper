@@ -1,6 +1,6 @@
 {
   "name": "@brocode/simple-react-form-validation-helper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Lightweight package which helps in implementing simple and generic form validations.",
   "main": "lib/index.js",
   "scripts": {
