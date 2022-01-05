@@ -1,3 +1,5 @@
+import {Dispatch, SetStateAction} from 'react';
+
 //helper functions for generating error messages for diffrent form inputs.
 
 const validator = {
@@ -6,7 +8,7 @@ const validator = {
   // @desc    handles name input blur event
   // @params  value, error state setter
   // @returns nothing
-  nameInputBlurHandler(name, setError) {
+  nameInputBlurHandler(name: string, setError: Dispatch<SetStateAction<string>>) {
     if (name === '') {
       setError('This field cannot be empty!')
     } else if (name.length < 4) {
@@ -21,7 +23,7 @@ const validator = {
   // @desc    handles name input change event
   // @params  value, error state setter
   // @returns nothing
-  nameInputChangeHandler(name, setError) {
+  nameInputChangeHandler(name: string, setError: Dispatch<SetStateAction<string>>) {
     if (name.length === 0) {
       setError('This field cannot be empty!')
     } else if (name.charAt(0) === ' ') {
@@ -48,7 +50,7 @@ const validator = {
   // @desc    handles email input blur event
   // @params  email, error state setter
   // @returns nothing
-  emailInputBlurHandler(email, setError) {
+  emailInputBlurHandler(email: string, setError: Dispatch<SetStateAction<string>>) {
     if (email === '') {
       setError('This field cannot be empty!')
     } else if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
@@ -61,7 +63,7 @@ const validator = {
   // @desc    handles email input change event
   // @params  email, error setter
   // @returns nothing
-  emailInputChangeHandler(email, setError) {
+  emailInputChangeHandler(email: string, setError: Dispatch<SetStateAction<string>>) {
     if (email.includes(' ')) {
       setError('Email id should not contain space.')
     }
@@ -72,7 +74,7 @@ const validator = {
 
   //######################### Validating phone number! ###########################
 
-  phoneInputBlurHandler(phone,setError) {
+  phoneInputBlurHandler(phone: string, setError: Dispatch<SetStateAction<string>>) {
       if (phone === '') {
       setError('This field cannot be empty!')
       } else if (phone.length < 10) {
@@ -84,7 +86,7 @@ const validator = {
       }
     },
 
- phoneInputChangeHandler(phone, setError) {
+ phoneInputChangeHandler(phone: string, setError: Dispatch<SetStateAction<string>>) {
 
       if(!phone.match(/^[0-9][-\s\./0-9]*$/g)){
         setError("Enter numbers only!");
@@ -101,7 +103,7 @@ const validator = {
   // @desc    handles password input blur event
   // @params  password, error setter
   // @returns nothing
-  passwordInputBlurHandler(password, setError) {
+  passwordInputBlurHandler(password: string, setError: Dispatch<SetStateAction<string>>) {
     if (password === '') {
       setError('This field cannot be empty!')
     } else if (password.length < 5) {
@@ -116,7 +118,7 @@ const validator = {
   // @desc    handles password input change event
   // @params  password, error setter
   // @returns nothing
-  passwordInputChangeHandler(password, setError) {
+  passwordInputChangeHandler(password: string, setError: Dispatch<SetStateAction<string>>) {
     if (password.length > 20) {
       setError('password should not exceed 20 characters')
     } else {
@@ -129,7 +131,7 @@ const validator = {
   // @desc    handles address input blur event
   // @params  event object, error state setter
   // @returns no return value
-  addressInputBlurHandler(value, setError) {
+  addressInputBlurHandler(value: string, setError: Dispatch<SetStateAction<string>>) {
     if (value === '') {
       setError('This field cannot be empty!')
     } else if (value.length < 4) {
@@ -144,7 +146,7 @@ const validator = {
   // @desc    handles address input change event
   // @params  value, error state setter
   // @returns no return value
-  addressInputChangeHandler(value, setError) {
+  addressInputChangeHandler(value: string, setError: Dispatch<SetStateAction<string>>) {
     if (value.length === 0) {
       setError('')
     } else if (value.charAt(0) === ' ') {
@@ -165,7 +167,7 @@ const validator = {
   // @desc    handles postal code(or any 6 digit number) input change event
   // @params  postal code, error state setter
   // @returns nothing
-  postalCodeInputBlurHandler(postalCode, setError) {
+  postalCodeInputBlurHandler(postalCode: string, setError: Dispatch<SetStateAction<string>>) {
     if (postalCode === '') {
       setError('This field cannot be empty!')
     } else if (postalCode.length !== 6) {
@@ -178,7 +180,7 @@ const validator = {
   // @desc    handles postal code input blur event
   // @params  postal code, error state setter
   // @returns nothing
-  postalCodeInputChangeHandler(postalCode, setError) {
+  postalCodeInputChangeHandler(postalCode: string, setError: Dispatch<SetStateAction<string>>) {
     if (postalCode === '') {
       setError('This field cannot be empty!')
     } else if (!postalCode.match(/^[0-9]*$/g) && postalCode !== '') {
@@ -195,7 +197,7 @@ const validator = {
   // @desc    handles Price (or similar values) input change event
   // @params  price, error state setter
   // @returns nothing
-  priceInputBlurHandler(price, setError) {
+  priceInputBlurHandler(price: string, setError: Dispatch<SetStateAction<string>>) {
     if (price === '') {
       setError('This field cannot be empty!')
     } else if (Number(price) < 0) {
@@ -209,7 +211,7 @@ const validator = {
   // @desc    handles price input blur event
   // @params  price, error state setter
   // @returns nothing
-  priceInputChangeHandler(price, setError) {
+  priceInputChangeHandler(price: string, setError: Dispatch<SetStateAction<string>>) {
     if (price === '') {
       setError('This field cannot be empty!')
     } else if (!price.match(/^\d+(,\d{1,2})?$/)) {
@@ -224,7 +226,7 @@ const validator = {
   // @desc    handles Percentages (0-100 without percent symbol) input change event
   // @params  percentage, error state setter
   // @returns nothing
-  percentageInputBlurHandler(percentage, setError) {
+  percentageInputBlurHandler(percentage: string, setError: Dispatch<SetStateAction<string>>) {
     if (percentage === '') {
       setError('This field cannot be empty!')
     } else if (Number(percentage) < 0) {
@@ -238,7 +240,7 @@ const validator = {
   // @desc    handles percentage input blur event
   // @params  percentage, error state setter
   // @returns nothing
-  percentageInputChangeHandler(percentage, setError) {
+  percentageInputChangeHandler(percentage: string, setError: Dispatch<SetStateAction<string>>) {
     if (percentage === '') {
       setError('This field cannot be empty!')
     } else if (!percentage.match(/(^100(\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$)/g)) {

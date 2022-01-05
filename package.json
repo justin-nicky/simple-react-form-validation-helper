@@ -1,0 +1,36 @@
+{
+  "name": "simple-react-form-validation-helper",
+  "version": "1.0.4",
+  "description": "Lightweight package which helps in implementing simple and generic form validations.",
+  "main": "validationHelpers.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justin-nicky/simple-react-form-validation-helper.git"
+  },
+  "keywords": [
+    "react",
+    "form",
+    "validator"
+  ],
+  "author": "justin-nicky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justin-nicky/simple-react-form-validation-helper/issues"
+  },
+  "homepage": "https://github.com/justin-nicky/simple-react-form-validation-helper#readme",
+  "devDependencies": {
+    "@types/react": "^17.0.38",
+    "typescript": "^4.5.4"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "dependencies": {
+    "react": "^17.0.2"
+  }
+}
