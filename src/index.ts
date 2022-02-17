@@ -1,45 +1,32 @@
-import {Dispatch, SetStateAction} from 'react';
+import { Dispatch, SetStateAction } from 'react'
 
 //helper functions for generating error messages for diffrent form inputs.
 
 const validator = {
   // #################### Validating Name! ###########################
 
-  // @desc    handles name input blur event
-  // @params  value, error state setter
+  // @desc    handles name input event
+  // @params  event object, error state setter
   // @returns nothing
-  nameInputBlurHandler(name: string, setError: Dispatch<SetStateAction<string>>) {
-    if (name === '') {
-      setError('This field cannot be empty!')
-    } else if (name.length < 4) {
-      setError('This field should have atleast 4 charecters.')
-    } else if (name.slice(-1) === ' ') {
-      setError('should not end with space.')
-    } else {
-      setError('')
+  name(options: any, setError: Dispatch<SetStateAction<string>>) {
+    let minLength = 4
+    if (options.minLength != null) {
+      minLength = options.minLength
     }
-  },
-
-  // @desc    handles name input change event
-  // @params  value, error state setter
-  // @returns nothing
-  nameInputChangeHandler(name: string, setError: Dispatch<SetStateAction<string>>) {
-    if (name.length === 0) {
+    if (options.name.length === 0) {
       setError('This field cannot be empty!')
-    } else if (name.charAt(0) === ' ') {
-      setError('should not start with space.')
-    } else if (name.includes('  ')) {
-      setError('should not contain consecutive spaces.')
-    } else if (/\d/.test(name)) {
-      setError('should not contain numbers.')
-    } else if (!name.match(/^[a-zA-Z ]+$/)) {
+    } else if (options.name.charAt(0) === ' ') {
+      setError('Should not start with space.')
+    } else if (options.name.includes('  ')) {
+      setError('Should not contain consecutive spaces.')
+    } else if (/\d/.test(options.name)) {
+      setError('Should not contain numbers.')
+    } else if (!options.name.match(/^[a-zA-Z ]+$/)) {
       setError('Invalid charecter!')
-    } else if (name === '') {
-      setError('This field cannot be empty!')
-    } else if (name.length < 4) {
-      setError('This field should have atleast 4 charecters.')
-    } else if (name.slice(-1) === ' ') {
-      setError('should not end with space.')
+    } else if (options.name.length < minLength) {
+      setError(`This field should have atleast ${minLength} charecters.`)
+    } else if (options.name.slice(-1) === ' ') {
+      setError('Should not end with space.')
     } else {
       setError('')
     }
@@ -47,80 +34,78 @@ const validator = {
 
   // #################### Validating Email! ###########################
 
-  // @desc    handles email input blur event
-  // @params  email, error state setter
+  // @desc    handles email input event
+  // @params  event object, error state setter
   // @returns nothing
-  emailInputBlurHandler(email: string, setError: Dispatch<SetStateAction<string>>) {
-    if (email === '') {
+  email(options: any, setError: Dispatch<SetStateAction<string>>) {
+    if (options.email === ' ') {
       setError('This field cannot be empty!')
-    } else if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+    } else if (
+      !options.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+    ) {
       setError('This email id is not valid.')
     } else {
       setError('')
     }
   },
 
-  // @desc    handles email input change event
-  // @params  email, error setter
-  // @returns nothing
-  emailInputChangeHandler(email: string, setError: Dispatch<SetStateAction<string>>) {
-    if (email.includes(' ')) {
-      setError('Email id should not contain space.')
-    }
-    else {
-      setError('')
-    }
-  },
-
   //######################### Validating phone number! ###########################
 
-  phoneInputBlurHandler(phone: string, setError: Dispatch<SetStateAction<string>>) {
-      if (phone === '') {
+  phone(options: any, setError: Dispatch<SetStateAction<string>>) {
+    let maxLength = 10
+    if (options.maxLength != null) {
+      maxLength = options.maxLength
+    }
+
+    if (options.phone === '') {
       setError('This field cannot be empty!')
-      } else if (phone.length < 10) {
-        setError('Phone number does not have 10 digits')
-      } else if (phone.length > 10) {
-        setError('Phone number has more than 10 digits')
-      } else {
-        setError('')
-      }
-    },
-
- phoneInputChangeHandler(phone: string, setError: Dispatch<SetStateAction<string>>) {
-
-      if(!phone.match(/^[0-9][-\s\./0-9]*$/g)){
-        setError("Enter numbers only!");
-      }else if (phone.length > 10) {
-        setError('Phone number has more than 10 digits')
-      }
-      else {
-        setError('')
-      }
-    },
-
-  //######################### Validating Password! ###########################
-
-  // @desc    handles password input blur event
-  // @params  password, error setter
-  // @returns nothing
-  passwordInputBlurHandler(password: string, setError: Dispatch<SetStateAction<string>>) {
-    if (password === '') {
-      setError('This field cannot be empty!')
-    } else if (password.length < 5) {
-      setError('password should have atleast 5 charecters')
-    } else if (password.length > 20) {
-      setError('password should not exceed 20 characters')
+    } else if (!options.phone.match(/^[0-9][-\s\./0-9]*$/g)) {
+      setError('Enter numbers only!')
+    } else if (options.phone.length < maxLength) {
+      setError(`Phone number does not have ${maxLength} digits`)
+    } else if (options.phone.length > maxLength) {
+      setError(`Phone number has more than ${maxLength} digits`)
     } else {
       setError('')
     }
   },
 
-  // @desc    handles password input change event
-  // @params  password, error setter
+  //######################### Validating Password! ###########################
+
+  // @desc    handles password input event
+  // @params  event object, error setter
   // @returns nothing
-  passwordInputChangeHandler(password: string, setError: Dispatch<SetStateAction<string>>) {
-    if (password.length > 20) {
-      setError('password should not exceed 20 characters')
+  password(options: any, setError: Dispatch<SetStateAction<string>>) {
+    let minLength = 8
+    let maxLength = 14
+    let isComplex = false
+    if (options.minLength != null && isComplex === false) {
+      minLength = options.minLength
+    }
+
+    if (options.maxLength != null && isComplex === false) {
+      maxLength = options.maxLength
+    }
+
+    if (isComplex != null) {
+      isComplex = options.isComplex
+    }
+
+    if (
+      isComplex === true &&
+      !options.password.match(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,14}$/
+      )
+    ) {
+      setError(
+        `Minimum ${minLength} and maximum ${maxLength} characters, at least one uppercase letter, one lowercase letter, one number and one special character`
+      )
+    } else if (options.password === '') {
+      setError('This field cannot be empty!')
+    } else if (options.password.length < minLength) {
+      setError(`password should have atleast ${minLength} charecters`)
+    } else if (options.password.length > maxLength) {
+      setError(`password should not exceed ${maxLength} characters`)
     } else {
       setError('')
     }
@@ -128,34 +113,22 @@ const validator = {
 
   // #################### Validating Address or similar stuff! ###########################
 
-  // @desc    handles address input blur event
+  // @desc    handles address input event
   // @params  event object, error state setter
   // @returns no return value
-  addressInputBlurHandler(value: string, setError: Dispatch<SetStateAction<string>>) {
-    if (value === '') {
-      setError('This field cannot be empty!')
-    } else if (value.length < 4) {
-      setError('This field should have atleast 4 charecters.')
-    } else if (value.slice(-1) === ' ') {
-      setError('This field should not end with space.')
-    } else {
-      setError('')
+  address(options: any, setError: Dispatch<SetStateAction<string>>) {
+    let minLength = 4
+    if (options.minLength != null) {
+      minLength = options.minLength
     }
-  },
 
-  // @desc    handles address input change event
-  // @params  value, error state setter
-  // @returns no return value
-  addressInputChangeHandler(value: string, setError: Dispatch<SetStateAction<string>>) {
-    if (value.length === 0) {
-      setError('')
-    } else if (value.charAt(0) === ' ') {
+    if (options.address === '') {
+      setError('This field cannot be empty!')
+    } else if (options.address.charAt(0) === ' ') {
       setError('should not start with space.')
-    } else if (value.length < 4) {
-      setError('This field should have atleast 4 charecters.')
-    } else if (value.includes('  ')) {
-      setError('should not contain consecutive spaces.')
-    } else if (value.slice(-1) === ' ') {
+    } else if (options.address.length < minLength) {
+      setError(`This field should have atleast ${minLength} charecters.`)
+    } else if (options.address.slice(-1) === ' ') {
       setError('This field should not end with space.')
     } else {
       setError('')
@@ -165,28 +138,18 @@ const validator = {
   //######################### Validating Postal Code! ###########################
 
   // @desc    handles postal code(or any 6 digit number) input change event
-  // @params  postal code, error state setter
+  // @params  event object, error state setter
   // @returns nothing
-  postalCodeInputBlurHandler(postalCode: string, setError: Dispatch<SetStateAction<string>>) {
-    if (postalCode === '') {
+  postalCode(options: any, setError: Dispatch<SetStateAction<string>>) {
+    if (options.postalCode === '') {
       setError('This field cannot be empty!')
-    } else if (postalCode.length !== 6) {
-      setError('Postal Code should have 6 digits')
-    } else {
-      setError('')
-    }
-  },
-
-  // @desc    handles postal code input blur event
-  // @params  postal code, error state setter
-  // @returns nothing
-  postalCodeInputChangeHandler(postalCode: string, setError: Dispatch<SetStateAction<string>>) {
-    if (postalCode === '') {
-      setError('This field cannot be empty!')
-    } else if (!postalCode.match(/^[0-9]*$/g) && postalCode !== '') {
+    } else if (
+      !options.postalCode.match(/^[0-9]*$/g) &&
+      options.postalCode !== ''
+    ) {
       setError('Enter numbers only!')
-    } else if (postalCode.length > 6) {
-      setError('postalCode should not have more than 6 digits')
+    } else if (options.postalCode.length !== 6) {
+      setError('Postal Code should have 6 digits')
     } else {
       setError('')
     }
@@ -195,27 +158,15 @@ const validator = {
   //######################### Validating Prices! ###########################
 
   // @desc    handles Price (or similar values) input change event
-  // @params  price, error state setter
+  // @params  event object, error state setter
   // @returns nothing
-  priceInputBlurHandler(price: string, setError: Dispatch<SetStateAction<string>>) {
-    if (price === '') {
+  price(options: any, setError: Dispatch<SetStateAction<string>>) {
+    if (options.price === '') {
       setError('This field cannot be empty!')
-    } else if (Number(price) < 0) {
-      setError('Negative numbers are not allowed')
-    }
-    else {
-      setError('')
-    }
-  },
-
-  // @desc    handles price input blur event
-  // @params  price, error state setter
-  // @returns nothing
-  priceInputChangeHandler(price: string, setError: Dispatch<SetStateAction<string>>) {
-    if (price === '') {
-      setError('This field cannot be empty!')
-    } else if (!price.match(/^\d+(,\d{1,2})?$/)) {
+    } else if (!options.price.match(/^\d+(,\d{1,2})?$/)) {
       setError('Enter a valid number!')
+    } else if (Number(options.price) < 0) {
+      setError('Negative numbers are not allowed')
     } else {
       setError('')
     }
@@ -226,30 +177,21 @@ const validator = {
   // @desc    handles Percentages (0-100 without percent symbol) input change event
   // @params  percentage, error state setter
   // @returns nothing
-  percentageInputBlurHandler(percentage: string, setError: Dispatch<SetStateAction<string>>) {
-    if (percentage === '') {
+  percentage(options: any, setError: Dispatch<SetStateAction<string>>) {
+    if (options.percentage === '') {
       setError('This field cannot be empty!')
-    } else if (Number(percentage) < 0) {
-      setError('Negative numbers are not allowed')
-    }
-    else {
-      setError('')
-    }
-  },
-
-  // @desc    handles percentage input blur event
-  // @params  percentage, error state setter
-  // @returns nothing
-  percentageInputChangeHandler(percentage: string, setError: Dispatch<SetStateAction<string>>) {
-    if (percentage === '') {
-      setError('This field cannot be empty!')
-    } else if (!percentage.match(/(^100(\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$)/g)) {
+    } else if (
+      !options.percentage.match(
+        /(^100(\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$)/g
+      )
+    ) {
       setError('Enter a valid percentage!')
+    } else if (Number(options.percentage) < 0) {
+      setError('Negative numbers are not allowed')
     } else {
       setError('')
     }
   },
 }
-
 
 export default validator
