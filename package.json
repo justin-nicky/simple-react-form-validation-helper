@@ -1,12 +1,13 @@
 {
   "name": "@brocode/simple-react-form-validation-helper",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "Lightweight package which helps in implementing simple and generic form validations.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,8 @@
   "homepage": "https://github.com/justin-nicky/simple-react-form-validation-helper#readme",
   "devDependencies": {
     "@types/react": "^17.0.38",
+    "jest-cli": "^27.5.1",
+    "ts-jest": "^27.1.3",
     "typescript": "^4.5.4"
   },
   "files": [

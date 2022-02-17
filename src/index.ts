@@ -117,7 +117,7 @@ const validator = {
   // @params  event object, error state setter
   // @returns no return value
   address(options: any, setError: Dispatch<SetStateAction<string>>) {
-    let minLength = 4
+    let minLength = 8
     if (options.minLength != null) {
       minLength = options.minLength
     }
@@ -125,7 +125,7 @@ const validator = {
     if (options.address === '') {
       setError('This field cannot be empty!')
     } else if (options.address.charAt(0) === ' ') {
-      setError('should not start with space.')
+      setError('Should not start with space.')
     } else if (options.address.length < minLength) {
       setError(`This field should have atleast ${minLength} charecters.`)
     } else if (options.address.slice(-1) === ' ') {
